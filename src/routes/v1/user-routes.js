@@ -8,7 +8,11 @@ const {
   getCourses,
 } = require("../../controllers/user-controller");
 
-userRouter.post("/signup", signupUser);
+const validate = require("../../middlewares/validate-middleware");
+
+const signupSchema = require("../../utils/auth-validator");
+
+userRouter.post("/signup", validate(signupSchema), signupUser);
 
 userRouter.post("/signin", signinUser);
 
